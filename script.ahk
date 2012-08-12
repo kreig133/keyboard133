@@ -2,8 +2,12 @@ Capslock::return
 ;
 Capslock & Enter::
 
-Send, {End}
-Arrows("{Enter}")
+GetKeyState, altState, Alt
+if altState = U
+{
+	Send, {End}
+}
+Arrows("{Enter}", "{Enter}")
 return
 ;
 Capslock & d::
@@ -61,12 +65,12 @@ return
 ;
 Capslock & y::
 
-Arrows("{PgUp}")
+Arrows("{PgUp}","{Raw}/")
 return
 ;
 Capslock & p::
 
-Arrows("{PgDn}", "*")
+Arrows("{PgDn}", "{Raw}*")
 return
 ;
 Capslock & h::
@@ -76,14 +80,23 @@ return
 ;
 Capslock & `;::
 
-Arrows("{Del}", "-")
+Arrows("{Del}", "{Raw}-")
+return
+;
+Capslock & [::
+
+Arrows("{Raw}{")
+return
+;
+Capslock & ]::
+
+Arrows("{Raw}}")
 return
 ;
 Capslock & n::
 
-Arrows("[")
+Arrows("[", "{vk6E}")
 return
-;
 ;
 Capslock & m::
 
@@ -102,7 +115,7 @@ return
 ;
 Capslock & /::
 
-Arrows("/", "+" )
+Arrows("/", "{Raw}+" )
 return
 ;
 Capslock & Space::
@@ -132,19 +145,7 @@ Arrows(MainKey, NumKey = "NO_KEY")
 	else if altState = D
 	{
 		
-		if NumKey =  *
-		{
-			Send, {vk6A}
-		}
-		else if NumKey = -
-		{
-			Send, {vk6D}
-		}
-		else if NumKey = +
-		{
-			Send, {vk6B}
-		}
-		else if NumKey <> %noKey%
+		if NumKey <> %noKey%
 		{
 			Send, %NumKey%
 		}
