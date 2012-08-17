@@ -1,4 +1,4 @@
-Capslock::return
+﻿Capslock::return
 ;
 Capslock & Enter::
 
