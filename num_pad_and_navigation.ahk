@@ -123,74 +123,28 @@ Capslock & Space::
 Arrows("{Click}", "0")
 return
 ;
-Capslock & =::
-
-SendInput, ≠
-return
-;
-Capslock & 7::
-
-SendInput, {Raw}&
-return
-;
-Capslock & 6::
-
-SendInput, {Raw}^
-return
-;
-Capslock & 4::
-
-SendInput, {Raw}$
-return
-;
-Capslock & 3::
-
-SendInput, {Raw}#
-return
-;
-Capslock & 2::
-
-SendInput, {Raw}@
-return
-;
-Capslock & \::
-
-SendInput, {Raw}|
-return
-;
-Capslock & SC029::
-
-GetKeyState, shiftState, Shift
-if shiftState = D
-	SendInput, {Raw}~
-else
-	SendInput, {Raw}``
-return
-;
-
-
 
 Arrows(MainKey, NumKey = "NO_KEY")
 {
-	noKey = NO_KEY
+	NoKey = NO_KEY
 	
-	GetKeyState, shiftState, Shift
-	GetKeyState, controlState, Control
-	GetKeyState, altState, Alt
+	GetKeyState, shiftKeyState, Shift
+	GetKeyState, controlKeyState, Control
+	GetKeyState, altKeyState, Alt
 
-	if shiftState = D 
+	if shiftKeyState = D 
 	{ 
-		if controlState = D
+		if controlKeyState = D
 			Send, ^+%MainKey%
 		else
 			Send, +%MainKey%
 	}
-	else if controlState = D
+	else if controlKeyState = D
 		Send, ^%MainKey%
-	else if altState = D
+	else if altKeyState = D
 	{
 		
-		if NumKey <> %noKey%
+		if NumKey <> %NoKey%
 		{
 			Send, %NumKey%
 		}

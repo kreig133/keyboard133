@@ -1,4 +1,4 @@
-Capslock & SC029::
+﻿Capslock & SC029::
 
 GetKeyState, shiftState, Shift
 if shiftState = D
