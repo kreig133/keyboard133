@@ -85,22 +85,22 @@ return
 ;
 Capslock & [::
 
-Arrows("{Raw}{")
+Arrows("[")
 return
 ;
 Capslock & ]::
 
-Arrows("{Raw}}")
+Arrows("]")
 return
 ;
 Capslock & n::
 
-Arrows("[", "{vk6E}")
+Arrows("{Raw}{", "{vk6E}")
 return
 ;
 Capslock & m::
 
-Arrows("]", "1")
+Arrows("{Raw}}", "1")
 return
 ;
 Capslock & ,::
@@ -122,6 +122,10 @@ Capslock & Space::
 
 Arrows("{Click}", "0")
 return
+;
+Capslock & =::
+	SendInput, ≠
+	return
 ;
 
 
