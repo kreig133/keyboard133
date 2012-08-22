@@ -10,29 +10,6 @@ if altState = U
 Arrows("{Enter}", "{Enter}")
 return
 ;
-Capslock & d::
-
-temp = Clipboard
-Clipboard = ;
-Send, ^{vk43}
-StringLen, length, Clipboard
-if length > 0 
-{
-	Send, ^{vk56}
-	Send, ^{vk56}
-}
-else
-{
-	Send, {Home}
-	Send, +{End}
-	Send, ^{vk43}
-	Send, {End}
-	Send, {Enter}
-	Send, ^{vk56}
-}
-Clipboard = %temp%
-return
-;
 Capslock & i::
 
 Arrows("{Up}", "8")
