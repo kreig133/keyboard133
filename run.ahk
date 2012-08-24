@@ -7,6 +7,8 @@
 #include num_pad_and_navigation.ahk
 #include symbols.ahk
 #include duplicate.ahk
+#include num_pad_and_navigation.ahk
+#include wiki.ahk
 
 
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
