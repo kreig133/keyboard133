@@ -2,11 +2,9 @@
 #include lib/Edit.ahk
 
 Gui,Font,
-Gui,Add,ComboBox,x13 y6 w600 vPattern,
-Gui,Add,ComboBox,x13 y35 w600 vReplaceBy,
+Gui,Add,ComboBox,x13 y6 w700 vPattern,
+Gui,Add,ComboBox,x13 y35 w700 vReplaceBy,
 Gui,Add,Edit,x13 y91 w700 h224 vTextInEditor hWndhEdit,
-Gui,Add,Checkbox,x620 y6 w71 h23  hWndhRegex,RegExp
-Gui,Add,Checkbox,x620 y35 w80 h37 hWndhCase,Case`nSensitive
 Gui +AlwaysOnTop
 
 Return

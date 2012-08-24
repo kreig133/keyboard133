@@ -1,4 +1,9 @@
-﻿Capslock::+
+﻿Capslock::return
+;
+Capslock & Insert:: 
+
+Send, Capslock
+return
 ;
 Capslock & Enter::
 

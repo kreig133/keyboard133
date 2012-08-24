@@ -7,7 +7,6 @@
 #include num_pad_and_navigation.ahk
 #include symbols.ahk
 #include duplicate.ahk
-#include num_pad_and_navigation.ahk
 #include wiki.ahk
 
 

@@ -1,3 +1,30 @@
+﻿WikiConfHotKey(FirstWikiTag, SecondWikiTag = "")
+{
+	wtCl = %Clipboard%
+	Send, {CTRLDOWN}{vk58}{CTRLUP}
+	Send, {CTRLDOWN}{SHIFTDOWN}{vk44}{SHIFTUP}{CTRLUP}
+	SendInput %FirstWikiTag%
+	SendInput {Enter}
+	if SecondWikiTag <>
+	{
+		SendInput %SecondWikiTag%
+		SendInput {Enter}
+	}
+	Send {CTRLDOWN}{vk56}{CTRLUP}
+	SendInput {Enter}
+	if SecondWikiTag <>			
+	{
+		SendInput %SecondWikiTag%
+		SendInput {Enter}
+	}
+	SendInput %FirstWikiTag%
+	SendInput {Enter}
+	Send, {Tab}
+	Send, {Enter}
+	Clipboard = %wtCl%
+	return 
+}
+
 #!q::
 WikiConfHotKey("{Raw}{quote}")
 return 
@@ -32,7 +59,7 @@ return
 
 
 #!r::
-	temp = %Clipboard%
+	tCl = %Clipboard%
 	Send, {CTRLDOWN}{vk58}{CTRLUP}
 	Send, {CTRLDOWN}{SHIFTDOWN}{vk44}{SHIFTUP}{CTRLUP}
 	SendInput {Raw}{expand:Код PB}
@@ -49,34 +76,6 @@ return
 	SendInput {Enter}
 	Send, {Tab}
 	Send, {Enter}
-	Clipboard = %temp%
-	return 
+	Clipboard = %tCl%
 return
 
-
-WikiConfHotKey(FirstTag, SecondTag = "")
-{
-	temp = %Clipboard%
-	Send, {CTRLDOWN}{vk58}{CTRLUP}
-	Send, {CTRLDOWN}{SHIFTDOWN}{vk44}{SHIFTUP}{CTRLUP}
-	SendInput %FirstTag%
-	SendInput {Enter}
-	if SecondTag <>
-	{
-		SendInput %SecondTag%
-		SendInput {Enter}
-	}
-	Send {CTRLDOWN}{vk56}{CTRLUP}
-	SendInput {Enter}
-	if SecondTag <>			
-	{
-		SendInput %SecondTag%
-		SendInput {Enter}
-	}
-	SendInput %FirstTag%
-	SendInput {Enter}
-	Send, {Tab}
-	Send, {Enter}
-	Clipboard = %temp%
-	return 
-}
