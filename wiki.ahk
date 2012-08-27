@@ -33,7 +33,7 @@ return
 WikiConfHotKey("{Raw}{expand}")
 return 
 
-#!c::o
+#!c::
 WikiConfHotKey("{Raw}{code}")
 return 
 

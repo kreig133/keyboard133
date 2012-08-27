@@ -46,13 +46,6 @@ F3:: ; Search ahead
 	
 	Return
 
-!r::  ; Activate/Deactivate Regex Mode 
-	MsgBox, Alt + Return
-	Return
-
-!c::  ; Activate/Deactivate Case Sensitive Mode
-	Return
-
 !p::  ; Replace Current Selection
 	Gui, Submit, NoHide ;
 
