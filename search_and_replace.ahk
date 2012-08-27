@@ -2,7 +2,7 @@
 #include lib/Edit.ahk
 
 Gui,Font,
-Gui,Add,ComboBox,x13 y6 w700 vPattern,
+Gui,Add,ComboBox,x13 y6 w700 vPattern hWndhPattern,
 Gui,Add,ComboBox,x13 y35 w700 vReplaceBy,
 Gui,Add,Edit,x13 y91 w700 h224 vTextInEditor hWndhEdit,
 Gui +AlwaysOnTop
@@ -39,7 +39,12 @@ Ctrl & Enter::
 
 F3:: ; Search ahead
 	Gui, Submit, NoHide ;
+	ControlFocus, , ahk_id %hEdit%
 	SearchAhead(hEdit, Pattern)
+	if( ! Edit_TextIsSelected(hEdit) )
+	{
+		ControlFocus, , ahk_id %hPattern%
+	}
 	Return
 
 +F3:: ; Search behind
