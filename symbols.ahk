@@ -42,3 +42,7 @@ Capslock & \::
 SendInput, {Raw}|
 return
 ;
+Capslock & -::
+
+SendInput, —
+return
