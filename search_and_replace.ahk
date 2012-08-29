@@ -15,7 +15,10 @@ Capslock & f::
 	Send, ^{vk43}
 	Edit_SetText(hEdit, Clipboard)
 
-	Gui,Show,x466 y466 w720 h308, keyboard133
+	CoordMode , Mouse, Screen
+	MouseGetPos, mX, mY
+
+	Gui,Show,x%mX% y%mY% w720 h308, keyboard133
 
 	Clipboard = %oldClipboard%
 	Return
@@ -31,9 +34,10 @@ Escape::
 
 Ctrl & Enter::
 	oldClipboard = %Clipboard%
-	Clipboard:=Edit_GetText(hEdit)
-	Gui, Hide
+	Gui, Submit
+	Clipboard = %TextInEditor%
 	Send, ^{vk56}
+	Sleep, 50
 	Clipboard = %oldClipboard%
 	Return
 
@@ -88,5 +92,9 @@ SearchAhead(hEdit, Pattern, StartSearchPos = -1){
 	}
 
 	Edit_SetSel(hEdit, FoundPos, FoundPos + StrLen(FindedText) )
+	; Scroll for visibility selected text	
+	EM_SCROLLCARET := 0xB7
+	SendMessage, EM_SCROLLCARET,,,, ahk_id %hEdit%
+	
 	Return
 }
