@@ -13,6 +13,7 @@ Capslock & f::
 	oldClipboard = %Clipboard%
 
 	Send, ^{vk43}
+	Sleep, 50
 	Edit_SetText(hEdit, Clipboard)
 
 	CoordMode , Mouse, Screen

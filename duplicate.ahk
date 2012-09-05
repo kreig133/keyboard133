@@ -8,8 +8,7 @@ Capslock & d::
 	}
 	catch e
 	{
-		temp = Clipboard
-		Clipboard = ;
+		temp := Clipboard
 		Send, ^{vk43}
 		StringLen, length, Clipboard
 		if length > 0 
@@ -26,7 +25,7 @@ Capslock & d::
 			Send, {Enter}
 			Send, ^{vk56}
 		}
-		Clipboard = %temp%
+		Clipboard := temp
 	}
 
 

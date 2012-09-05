@@ -1,8 +1,23 @@
-﻿WikiConfHotKey(FirstWikiTag, SecondWikiTag = "")
+﻿SaveSelectedTextAndOpenWikiDialog()
 {
-	wtCl = %Clipboard%
+	global tCl
+	tCl := Clipboard	
+	Sleep, 50
 	Send, {CTRLDOWN}{vk58}{CTRLUP}
 	Send, {CTRLDOWN}{SHIFTDOWN}{vk44}{SHIFTUP}{CTRLUP}
+}
+
+CloseWikiDialogAndRestoreClipboard()
+{
+	global tCl
+	Send, {Tab}	
+	Send, {Enter}
+	Clipboard := tCl
+}
+
+WikiConfHotKey(FirstWikiTag, SecondWikiTag = "")
+{
+	SaveSelectedTextAndOpenWikiDialog()
 	SendInput %FirstWikiTag%
 	SendInput {Enter}
 	if SecondWikiTag <>
@@ -19,9 +34,7 @@
 	}
 	SendInput %FirstWikiTag%
 	SendInput {Enter}
-	Send, {Tab}
-	Send, {Enter}
-	Clipboard = %wtCl%
+	CloseWikiDialogAndRestoreClipboard()
 	return 
 }
 
@@ -57,25 +70,33 @@ return
 WikiConfHotKey("{Raw}{panel}")
 return 
 
+#!a::
+	SaveSelectedTextAndOpenWikiDialog()
+	SendInput, {Raw}{anchor:%Clipboard%}
+	;
+	CloseWikiDialogAndRestoreClipboard()
+return 
+
 
 #!r::
-	tCl = %Clipboard%
-	Send, {CTRLDOWN}{vk58}{CTRLUP}
-	Send, {CTRLDOWN}{SHIFTDOWN}{vk44}{SHIFTUP}{CTRLUP}
+	SaveSelectedTextAndOpenWikiDialog()
 	SendInput {Raw}{expand:Код PB}
 	SendInput {Enter}
 
 	SendInput {Raw}{code:lang=javascript}
 	SendInput {Enter}
 
-	Send {CTRLDOWN}{vk56}{CTRLUP}
+	SendInput, %Clipboard%
 	SendInput {Enter}
 	SendInput {Raw}{code}
 	SendInput {Enter}
 	SendInput {Raw}{expand}
 	SendInput {Enter}
-	Send, {Tab}
-	Send, {Enter}
-	Clipboard = %tCl%
+	CloseWikiDialogAndRestoreClipboard()
 return
 
+#!l::
+	SaveSelectedTextAndOpenWikiDialog()
+	SendInput, {Raw}[%Clipboard%|%tCl%#%Clipboard%]
+	CloseWikiDialogAndRestoreClipboard()
+return 
