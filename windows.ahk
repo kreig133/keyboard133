@@ -50,3 +50,7 @@ catch e
 	WinSet, Transparent, %currentTransparent%, A ;
 }
 Return
+
+!#s::
+WinActivate, Skype
+Return

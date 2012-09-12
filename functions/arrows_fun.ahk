@@ -13,7 +13,9 @@
 			else
 				Send, ^+%MainKey%
 		}	
-		else
+		else if altKeyState = D
+			Send, +!%MainKey%
+		else 
 			Send, +%MainKey%
 	}
 	else if controlKeyState = D

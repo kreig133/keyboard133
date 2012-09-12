@@ -31,6 +31,21 @@ $*h::
 $*`;::
 	NoCapsMode("{Del}", "{vkBA}")
 	Return
+$*u::
+	NoCapsMode("{Home}", "{vk55}")
+	Return
+
+$*o::
+	NoCapsMode("{End}", "{vk4F}")
+	Return
+
+$*y::
+	NoCapsMode("{PgUp}", "{vk59}")
+	Return
+
+$*p::
+	NoCapsMode("{PgDn}", "{vk50}")
+	Return
 
 NoCapsMode(_noCapsModeOn, _noCapsModeOff)
 {
