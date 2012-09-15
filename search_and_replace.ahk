@@ -69,6 +69,7 @@ F3:: ; Search ahead
 	if( Edit_TextIsSelected(hEdit) )
 	{
 		Edit_GetSel(hEdit, $StartSelPos, $EndSelPos)
+		Pattern := UpdatePattern()
 		NewText := RegExReplace(Edit_GetSelText(hEdit), Pattern, ReplaceBy)
 		Edit_ReplaceSel(hEdit, NewText)
 		SearchAhead(hEdit, Pattern, $StartSelPos + StrLen(NewText))
@@ -77,6 +78,7 @@ F3:: ; Search ahead
 
 !a::  ; Replace All
 	Gui, Submit, NoHide  ;
+	Pattern := UpdatePattern()
 	NewText := UpdateStrings( RegExReplace(TextInEditor, Pattern, ReplaceBy) ) ;
 	GuiControl,,TextInEditor, %NewText%
 
@@ -86,9 +88,11 @@ SearchAhead(hEdit, Pattern, StartSearchPos = -1){
 	textEditor := Edit_GetText(hEdit)
 	Edit_GetSel(hEdit, $StartSelPos, $EndSelPos)
 	
+	Pattern := UpdatePattern()
+	
 	if( StartSearchPos < 0 )
 	{
-	FoundPos := RegExMatch(textEditor, Pattern, FindedText, $StartSelPos=$EndSelPos ? 1 : $EndSelPos+1)-1
+		FoundPos := RegExMatch(textEditor, Pattern, FindedText, $StartSelPos=$EndSelPos ? 1 : $EndSelPos+1)-1
 	}
 	else
 	{
@@ -109,7 +113,7 @@ UpdateStrings(_stringForUpdate)
 	newString = ;
 	Loop
 	{
-		newString := RegExReplace( _stringForUpdate, "\$i", Index, 0, 1 )
+		newString := RegExReplace( _stringForUpdate, "(?<!\\)\$i", Index, 0, 1 )
 
 		if _stringForUpdate = %newString% 
 			Break
@@ -121,6 +125,12 @@ UpdateStrings(_stringForUpdate)
 
 	GuiControl,,Index, %Index%
 
-	Return  RegExReplace( RegExReplace( RegExReplace( RegExReplace(_stringForUpdate, "(?<!\\)\\n", "`n"), "(?<!\\)\\t", "`t" ), "(?<!\\)\\r", "`r"), "\\\\", "\")
+	Return  RegExReplace( RegExReplace( RegExReplace( RegExReplace( RegExReplace(_stringForUpdate, "(?<!\\)\\n", "`n"), "(?<!\\)\\t", "`t" ), "(?<!\\)\\r", "`r"), "\\\\", "\"), "\\\$i", "$$i")
+}
+
+UpdatePattern()
+{
+	global Pattern
+	Return RegExReplace(Pattern, "^([imsxADJUXPS`nra]+\))?(.*)$", "$1(*UCP)$2")
 }
 
