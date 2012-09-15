@@ -1,9 +1,12 @@
 ﻿#SingleInstance
 #include lib/Edit.ahk
 
+index := 1
+
 Gui,Font,
 Gui,Add,ComboBox,x13 y6 w700 vPattern hWndhPattern,
-Gui,Add,ComboBox,x13 y35 w700 vReplaceBy,
+Gui,Add,ComboBox,x13 y35 w650 vReplaceBy,
+Gui,Add,Edit,Limit Number x670 y35 w43 vIndex hWndhIndex,
 Gui,Add,Edit,x13 y91 w700 h224 vTextInEditor hWndhEdit,
 Gui +AlwaysOnTop
 
@@ -74,7 +77,7 @@ F3:: ; Search ahead
 
 !a::  ; Replace All
 	Gui, Submit, NoHide  ;
-	NewText := RegExReplace(TextInEditor, Pattern, ReplaceBy)  ;
+	NewText := UpdateStrings( RegExReplace(TextInEditor, Pattern, ReplaceBy) ) ;
 	GuiControl,,TextInEditor, %NewText%
 
 	Return
@@ -85,7 +88,7 @@ SearchAhead(hEdit, Pattern, StartSearchPos = -1){
 	
 	if( StartSearchPos < 0 )
 	{
-		FoundPos := RegExMatch(textEditor, Pattern, FindedText, $StartSelPos=$EndSelPos ? 1 : $EndSelPos+1)-1
+	FoundPos := RegExMatch(textEditor, Pattern, FindedText, $StartSelPos=$EndSelPos ? 1 : $EndSelPos+1)-1
 	}
 	else
 	{
@@ -99,3 +102,25 @@ SearchAhead(hEdit, Pattern, StartSearchPos = -1){
 	
 	Return
 }
+
+UpdateStrings(_stringForUpdate)
+{
+	global Index
+	newString = ;
+	Loop
+	{
+		newString := RegExReplace( _stringForUpdate, "\$i", Index, 0, 1 )
+
+		if _stringForUpdate = %newString% 
+			Break
+		else
+			++Index
+
+		_stringForUpdate := newString
+	}
+
+	GuiControl,,Index, %Index%
+
+	Return  RegExReplace( RegExReplace( RegExReplace( RegExReplace(_stringForUpdate, "(?<!\\)\\n", "`n"), "(?<!\\)\\t", "`t" ), "(?<!\\)\\r", "`r"), "\\\\", "\")
+}
+
