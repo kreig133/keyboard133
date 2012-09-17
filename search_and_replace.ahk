@@ -1,13 +1,15 @@
 ﻿#SingleInstance
 #include lib/Edit.ahk
 
-index := 1
+index := 1 ; For built-in variable $i
+k133Width  := 1000
+k133Height := 750
 
 Gui,Font,
-Gui,Add,ComboBox,x13 y6 w700 vPattern hWndhPattern,
-Gui,Add,ComboBox,x13 y35 w650 vReplaceBy,
-Gui,Add,Edit,Limit Number x670 y35 w43 vIndex hWndhIndex,
-Gui,Add,Edit,x13 y91 w700 h224 vTextInEditor hWndhEdit,
+Gui,Add,ComboBox,x13 y6 w970 vPattern hWndhPattern,
+Gui,Add,ComboBox,x13 y35 w920 vReplaceBy,
+Gui,Add,Edit,Limit Number x940 y35 w43 vIndex hWndhIndex,
+Gui,Add,Edit,x13 y91 w970 h650 vTextInEditor hWndhEdit,
 Gui +AlwaysOnTop
 
 Return
@@ -19,10 +21,11 @@ Capslock & f::
 	Sleep, 50
 	Edit_SetText(hEdit, Clipboard)
 
-	CoordMode , Mouse, Screen
-	MouseGetPos, mX, mY
+	centralPoint := GetCurrentMonitor().GetCentralPoint()
+	newXCoordinate := centralPoint.x - k133Width/2
+	newYCoordinate := centralPoint.y - k133Height/2
 
-	Gui,Show,x%mX% y%mY% w720 h308, keyboard133
+	Gui,Show,x%newXCoordinate% y%newYCoordinate% w%k133Width% h%k133Height%, keyboard133
 
 	Clipboard = %oldClipboard%
 	Return
@@ -56,7 +59,7 @@ F3:: ; Search ahead
 	Return
 
 +F3:: ; Search behind
-	
+	;TODO
 	Return
 
 !p::  ; Replace Current Selection
@@ -70,7 +73,7 @@ F3:: ; Search ahead
 	{
 		Edit_GetSel(hEdit, $StartSelPos, $EndSelPos)
 		Pattern := UpdatePattern()
-		NewText := RegExReplace(Edit_GetSelText(hEdit), Pattern, ReplaceBy)
+		NewText := UpdateStrings(RegExReplace(Edit_GetSelText(hEdit), Pattern, ReplaceBy))
 		Edit_ReplaceSel(hEdit, NewText)
 		SearchAhead(hEdit, Pattern, $StartSelPos + StrLen(NewText))
 	}
@@ -125,7 +128,9 @@ UpdateStrings(_stringForUpdate)
 
 	GuiControl,,Index, %Index%
 
-	Return  RegExReplace( RegExReplace( RegExReplace( RegExReplace( RegExReplace(_stringForUpdate, "(?<!\\)\\n", "`n"), "(?<!\\)\\t", "`t" ), "(?<!\\)\\r", "`r"), "\\\\", "\"), "\\\$i", "$$i")
+	  _result := RegExReplace( RegExReplace( RegExReplace( RegExReplace( RegExReplace(_stringForUpdate, "(?<!\\)\\n", "`n"), "(?<!\\)\\t", "`t" ), "(?<!\\)\\r", "`r"), "\\\\", "\"), "\\\$i", "$$i")
+	  ; MsgBox, % "Before" _stringForUpdate "`nAfter" _result
+	  Return _result
 }
 
 UpdatePattern()
@@ -134,3 +139,103 @@ UpdatePattern()
 	Return RegExReplace(Pattern, "^([imsxADJUXPS`nra]+\))?(.*)$", "$1(*UCP)$2")
 }
 
+GetMonitorCount()
+{
+	SysGet, MonitorCount, MonitorCount
+	Return MonitorCount
+}
+
+GetMonitorByIndex(_index)
+{
+	SysGet, Mon, Monitor, %_index%
+	_lt := new Point(MonLeft , MonTop)
+	_rt := new Point(MonRight, MonBottom)
+	Return new Monitor(_lt, _rt)
+}
+
+GetCurrentMonitor()
+{
+	WinGetPos, _x, _y, _w, _h, A
+	_window := new Window(new Point(_x,_y), new Point(_x+_w, _y+_h) )
+	Loop, % GetMonitorCount()
+	{
+		_monitor := GetMonitorByIndex(A_Index)
+		if(_monitor.ContainsPoint(_window.GetCentralPoint()))
+		{
+			Return _monitor
+		}
+	}
+}
+
+;ShowInformationAboutMonitors()
+;{
+;	Loop, % GetMonitorCount()
+;	{
+;		_monitor := GetMonitorByIndex(A_Index)
+;		_monitor.Show()
+;	}
+;}
+
+;ShowCentralPointOfMonitors()
+;{
+;	Loop, % GetMonitorCount()
+;	{
+;		_monitor := GetMonitorByIndex(A_Index)
+;		_monitor.GetCentralPoint().Show()
+;	}
+;}
+
+class Point
+{
+	__New(_x, _y)
+	{
+		this.x := _x
+		this.y := _y
+	}
+
+	Show()
+	{
+		MsgBox, % "Point(" this.x ", " this.y ")"
+	}
+}
+
+class Rectangle
+{
+	__New(_lt, _rd)
+	{
+		this.leftTop   := _lt
+		this.rightDown := _rd
+	}
+
+	ContainsPoint(_point)
+	{
+		if( _point.x >= this.leftTop.x and _point.x <= this.rightDown.x and _point.y >= this.leftTop.y and _point.y <= this.rightDown.y)
+		{
+			Return true
+		}
+
+		Return false
+	}
+
+	GetCentralPoint()
+	{
+		_x := this.leftTop.x + (this.rightDown.x - this.leftTop.x) / 2
+		_y := this.leftTop.y + (this.rightDown.y - this.leftTop.y) / 2
+		Return new Point(_x, _y)
+	}
+
+	Show()
+	{
+		MsgBox, % "Monitor — LeftTop(" this.leftTop.x ", " this.leftTop.y "), RightDown("  this.rightDown.x ", " this.rightDown.y ")"
+	}
+}
+
+class Window extends Rectangle
+{
+
+}
+
+class Monitor extends Rectangle
+{
+
+}
