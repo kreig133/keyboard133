@@ -16,22 +16,22 @@ return
 ;
 Capslock & 1::
 
-SendInput, {Raw}¬
+Symbols("{Raw}¬", "{Raw}¹") 
 return
 ;
 Capslock & 2::
 
-SendInput, {Raw}@
+Symbols("{Raw}@", "{Raw}²") 
 return
 ;
 Capslock & 3::
 
-SendInput, {Raw}#
+Symbols("{Raw}#", "{Raw}³") 
 return
 ;
 Capslock & 4::
 
-SendInput, {Raw}$
+Symbols("{Raw}$", "{Raw}€") 
 return
 ;
 Capslock & 5::
@@ -79,6 +79,48 @@ Capslock & -::
 Symbols("{Raw}–", "{Raw}—") 
 return
 ;
+;
+Capslock & [::
+
+SendInput, [
+return
+;
+Capslock & ]::
+
+SendInput, ]
+return
+;
+Capslock & n::
+
+SendInput, {Raw}{
+return
+;
+Capslock & m::
+
+SendInput, {Raw}}
+return
+;
+Capslock & /::
+
+Symbols("{Raw}/", "{Raw}÷") 
+return
+;
+Capslock & Space::
+
+SendInput, {Click}
+return
+;
+Capslock & vkBC::
+
+Symbols("{Raw}<", "{Raw}≤") 
+return
+;
+Capslock & vkBE::
+
+Symbols("{Raw}>", "{Raw}≥") 
+return
+;
+
 :?:->::→
 ;
 :?:<-::←

@@ -11,11 +11,17 @@ noCapsModeOn := 0
 #include duplicate.ahk
 #include wiki.ahk
 #include windows.ahk
-#include no_caps_mode.ahk
+;#include no_caps_mode.ahk
 
 
 
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+SetCapsLockState AlwaysOff
 
+
+
+*F12::
+	MsgBox, % "LShift = " GetKeyState("LShift", "P") "`nLWin  = " GetKeyState("LWin", "P")  "`nLCtrl   = " GetKeyState("LCtrl", "P") "`nLAlt    = " GetKeyState("LAlt", "P")
+	Return 

@@ -15,7 +15,7 @@ Gui +AlwaysOnTop
 Return
 
 Capslock & f::
-	oldClipboard = %Clipboard%
+	oldClipboard := Clipboard
 
 	Send, ^{vk43}
 	Sleep, 50
@@ -27,7 +27,7 @@ Capslock & f::
 
 	Gui,Show,x%newXCoordinate% y%newYCoordinate% w%k133Width% h%k133Height%, keyboard133
 
-	Clipboard = %oldClipboard%
+	Clipboard := oldClipboard
 	Return
 
 GuiClose: 

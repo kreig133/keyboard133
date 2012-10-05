@@ -1,9 +1,15 @@
 ﻿SaveSelectedTextAndOpenWikiDialog()
 {
+
+    KeyWait, Lwin
+    KeyWait, Rwin
+    KeyWait, Alt
+  ;  MsgBox, Вики вызвали 0_o
 	global tCl
 	tCl := Clipboard	
 	Sleep, 50
 	Send, {CTRLDOWN}{vk58}{CTRLUP}
+	Sleep, 50
 	Send, {CTRLDOWN}{SHIFTDOWN}{vk44}{SHIFTUP}{CTRLUP}
 }
 
@@ -26,6 +32,7 @@ WikiConfHotKey(FirstWikiTag, SecondWikiTag = "")
 		SendInput {Enter}
 	}
 	Send {CTRLDOWN}{vk56}{CTRLUP}
+	Sleep, 50
 	SendInput {Enter}
 	if SecondWikiTag <>			
 	{
@@ -38,39 +45,46 @@ WikiConfHotKey(FirstWikiTag, SecondWikiTag = "")
 	return 
 }
 
-#!q::
+#!q up::
 WikiConfHotKey("{Raw}{quote}")
 return 
 
-#!e::
+#!e up::
 WikiConfHotKey("{Raw}{expand}")
 return 
 
-#!c::
-WikiConfHotKey("{Raw}{code}")
+#!c up::
+	SaveSelectedTextAndOpenWikiDialog()
+	SendInput {Raw}{code:lang=javascript}
+	SendInput {Enter}
+	Send {CTRLDOWN}{vk56}{CTRLUP}
+	Sleep, 50
+	SendInput {Enter}
+	SendInput {Raw}{code}
+	CloseWikiDialogAndRestoreClipboard()
 return 
 
-#!n::
+#!n up::
 WikiConfHotKey("{Raw}{note}")
 return 
 
-#!i::
+#!i up::
 WikiConfHotKey("{Raw}{info}")
 return 
 
-#!t::
+#!t up::
 WikiConfHotKey("{Raw}{tip}")
 return 
 
-#!w::
+#!w up::
 WikiConfHotKey("{Raw}{warning}")
 return 
 
-#!p::
+#!p up::
 WikiConfHotKey("{Raw}{panel}")
 return 
 
-#!a::
+#!a up::
 	SaveSelectedTextAndOpenWikiDialog()
 	SendInput, {Raw}{anchor:%Clipboard%}
 	;
@@ -78,15 +92,14 @@ return
 return 
 
 
-#!r::
+#!r up::
 	SaveSelectedTextAndOpenWikiDialog()
 	SendInput {Raw}{expand:Код PB}
 	SendInput {Enter}
-
 	SendInput {Raw}{code:lang=javascript}
 	SendInput {Enter}
-
-	SendInput, %Clipboard%
+	Send {CTRLDOWN}{vk56}{CTRLUP}
+	Sleep, 50
 	SendInput {Enter}
 	SendInput {Raw}{code}
 	SendInput {Enter}
@@ -95,8 +108,19 @@ return
 	CloseWikiDialogAndRestoreClipboard()
 return
 
-#!l::
+#!l up::
 	SaveSelectedTextAndOpenWikiDialog()
 	SendInput, {Raw}[%Clipboard%|%tCl%#%Clipboard%]
 	CloseWikiDialogAndRestoreClipboard()
 return 
+
+#!v up::
+	SaveSelectedTextAndOpenWikiDialog()
+	SendInput {Raw}{expand:Показать список исходящих ссылок}
+	SendInput {Enter}
+	SendInput {Raw}{incoming-links}
+	SendInput {Enter}
+	SendInput {Raw}{expand}
+	SendInput {Enter}
+	CloseWikiDialogAndRestoreClipboard()
+return
