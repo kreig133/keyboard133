@@ -1,10 +1,8 @@
-﻿SaveSelectedTextAndOpenWikiDialog()
+SaveSelectedTextAndOpenWikiDialog()
 {
-
     KeyWait, Lwin
     KeyWait, Rwin
     KeyWait, Alt
-  ;  MsgBox, Вики вызвали 0_o
 	global tCl
 	tCl := Clipboard	
 	Sleep, 50
@@ -17,7 +15,7 @@ CloseWikiDialogAndRestoreClipboard()
 {
 	global tCl
 	Send, {Tab}	
-	Send, {Enter}
+	Send, {Space}
 	Clipboard := tCl
 }
 
@@ -25,7 +23,6 @@ WikiConfHotKey(FirstWikiTag, SecondWikiTag = "")
 {
 	SaveSelectedTextAndOpenWikiDialog()
 	SendInput %FirstWikiTag%
-	SendInput {Enter}
 	if SecondWikiTag <>
 	{
 		SendInput %SecondWikiTag%
@@ -33,14 +30,12 @@ WikiConfHotKey(FirstWikiTag, SecondWikiTag = "")
 	}
 	Send {CTRLDOWN}{vk56}{CTRLUP}
 	Sleep, 50
-	SendInput {Enter}
 	if SecondWikiTag <>			
 	{
 		SendInput %SecondWikiTag%
 		SendInput {Enter}
 	}
 	SendInput %FirstWikiTag%
-	SendInput {Enter}
 	CloseWikiDialogAndRestoreClipboard()
 	return 
 }
@@ -51,17 +46,6 @@ return
 
 #!e up::
 WikiConfHotKey("{Raw}{expand}")
-return 
-
-#!c up::
-	SaveSelectedTextAndOpenWikiDialog()
-	SendInput {Raw}{code:lang=javascript}
-	SendInput {Enter}
-	Send {CTRLDOWN}{vk56}{CTRLUP}
-	Sleep, 50
-	SendInput {Enter}
-	SendInput {Raw}{code}
-	CloseWikiDialogAndRestoreClipboard()
 return 
 
 #!n up::
@@ -83,6 +67,13 @@ return
 #!p up::
 WikiConfHotKey("{Raw}{panel}")
 return 
+
+#!m up::
+	SaveSelectedTextAndOpenWikiDialog()
+	SendInput, {Raw}{{%Clipboard%}}
+	;
+	CloseWikiDialogAndRestoreClipboard()
+return
 
 #!a up::
 	SaveSelectedTextAndOpenWikiDialog()
@@ -124,3 +115,14 @@ return
 	SendInput {Enter}
 	CloseWikiDialogAndRestoreClipboard()
 return
+	
+#!c up::
+	SaveSelectedTextAndOpenWikiDialog()
+	SendInput {Raw}{code:lang=javascript}
+	SendInput {Enter}
+	Send {CTRLDOWN}{vk56}{CTRLUP}
+	Sleep, 50
+	SendInput {Enter}
+	SendInput {Raw}{code}
+	CloseWikiDialogAndRestoreClipboard()
+return 
