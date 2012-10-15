@@ -5,7 +5,7 @@ Capslock & Insert::
 Send, Capslock
 return
 ;
-Capslock & Enter::
+Capslock & VK0D:: ; Capslock + Enter
 
 GetKeyState, altState, Alt
 if altState = U
@@ -15,52 +15,52 @@ if altState = U
 Arrows("{Enter}")
 return
 ;
-Capslock & i::
+Capslock & VK49:: ; Capslock + i
 
 Arrows("{Up}")
 return
 ;
-Capslock & k::
+Capslock & VK4b:: ; Capslock + k
 
 Arrows("{Down}")
 return
 ;
-Capslock & j::
+Capslock & VK4A:: ; Capslock + j
 
 Arrows("{Left}")
 return
 ;
-Capslock & l::
+Capslock & VK4C:: ; Capslcok + l
 
 Arrows("{Right}")
 return
 ;
-Capslock & u::
+Capslock & VK55:: ; Capslock + u
 
 Arrows("{Home}")
 return
 ;
-Capslock & o::
+Capslock & VK4F:: ; Capslock + o
 
 Arrows("{End}")
 return
 ;
-Capslock & y::
+Capslock & VK59:: ; Capslock + y
 
 Arrows("{PgUp}")
 return
 ;
-Capslock & p::
+Capslock & VK50:: ; Capslock + p
 
 Arrows("{PgDn}")
 return
 ;
-Capslock & h::
+Capslock & VK48:: ; Capslock + h
 
 Arrows("{BS}")
 return
 ;
-Capslock & `;::
+Capslock & VKBA:: ; Capslock + ;
 
 Arrows("{Del}")
 return

@@ -3,7 +3,7 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-#a::
+#VK41:: ; Win + a
 WinSet, AlwaysOnTop, Toggle, A ;
 Return
 
@@ -51,6 +51,6 @@ catch e
 }
 Return
 
-!#s::
+!#VK53:: ; Win + Alt + s
 WinActivate, Skype
 Return

@@ -1,4 +1,4 @@
-Capslock & d::
+Capslock & VK44:: ; Capslock + d
 
 	try
 	{

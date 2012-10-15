@@ -22,6 +22,6 @@ SetCapsLockState AlwaysOff
 
 
 
-*F12::
-	MsgBox, % "LShift = " GetKeyState("LShift", "P") "`nLWin  = " GetKeyState("LWin", "P")  "`nLCtrl   = " GetKeyState("LCtrl", "P") "`nLAlt    = " GetKeyState("LAlt", "P")
-	Return 
+;*F12::
+;	MsgBox, % "LShift = " GetKeyState("LShift", "P") "`nLWin  = " GetKeyState("LWin", "P")  "`nLCtrl   = " GetKeyState("LCtrl", "P") "`nLAlt    = " GetKeyState("LAlt", "P")
+;	Return 

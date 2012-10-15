@@ -1,4 +1,4 @@
-SaveSelectedTextAndOpenWikiDialog()
+SaveSelectedText()
 {
     KeyWait, Lwin
     KeyWait, Rwin
@@ -8,6 +8,10 @@ SaveSelectedTextAndOpenWikiDialog()
 	Sleep, 50
 	Send, {CTRLDOWN}{vk58}{CTRLUP}
 	Sleep, 50
+}
+
+OpenWikiDialog()
+{
 	Send, {CTRLDOWN}{SHIFTDOWN}{vk44}{SHIFTUP}{CTRLUP}
 }
 
@@ -21,7 +25,8 @@ CloseWikiDialogAndRestoreClipboard()
 
 WikiConfHotKey(FirstWikiTag, SecondWikiTag = "")
 {
-	SaveSelectedTextAndOpenWikiDialog()
+	SaveSelectedText()
+	OpenWikiDialog()
 	SendInput %FirstWikiTag%
 	if SecondWikiTag <>
 	{
@@ -69,14 +74,16 @@ WikiConfHotKey("{Raw}{panel}")
 return 
 
 #!m up::
-	SaveSelectedTextAndOpenWikiDialog()
-	SendInput, {Raw}{{%Clipboard%}}
-	;
-	CloseWikiDialogAndRestoreClipboard()
+	SaveSelectedText()
+	SendInput, {Raw}{{%Clipboard%
+	Sleep, 50
+	SendInput, {Raw}}}
+	Clipboard := tCl
 return
 
 #!a up::
-	SaveSelectedTextAndOpenWikiDialog()
+	SaveSelectedText()
+	OpenWikiDialog()
 	SendInput, {Raw}{anchor:%Clipboard%}
 	;
 	CloseWikiDialogAndRestoreClipboard()
@@ -84,7 +91,8 @@ return
 
 
 #!r up::
-	SaveSelectedTextAndOpenWikiDialog()
+	SaveSelectedText()
+	OpenWikiDialog()
 	SendInput {Raw}{expand:Код PB}
 	SendInput {Enter}
 	SendInput {Raw}{code:lang=javascript}
@@ -100,13 +108,15 @@ return
 return
 
 #!l up::
-	SaveSelectedTextAndOpenWikiDialog()
+	SaveSelectedText()
+	OpenWikiDialog()
 	SendInput, {Raw}[%Clipboard%|%tCl%#%Clipboard%]
 	CloseWikiDialogAndRestoreClipboard()
 return 
 
 #!v up::
-	SaveSelectedTextAndOpenWikiDialog()
+	SaveSelectedText()
+	OpenWikiDialog()
 	SendInput {Raw}{expand:Показать список исходящих ссылок}
 	SendInput {Enter}
 	SendInput {Raw}{incoming-links}
@@ -117,7 +127,8 @@ return
 return
 	
 #!c up::
-	SaveSelectedTextAndOpenWikiDialog()
+	SaveSelectedText()
+	OpenWikiDialog()
 	SendInput {Raw}{code:lang=javascript}
 	SendInput {Enter}
 	Send {CTRLDOWN}{vk56}{CTRLUP}

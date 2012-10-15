@@ -9,57 +9,57 @@
 }
 
 
-Capslock & SC029::
+Capslock & SC029:: ; Capslock + `
 
 Symbols("{Raw}~", "{Raw}``")
 return
 ;
-Capslock & 1::
+Capslock & VK31:: ; Capslock + 1
 
 Symbols("{Raw}¬", "{Raw}¹") 
 return
 ;
-Capslock & 2::
+Capslock & VK32:: ; Capslock + 2
 
 Symbols("{Raw}@", "{Raw}²") 
 return
 ;
-Capslock & 3::
+Capslock & VK33:: ; Capslock + 3
 
 Symbols("{Raw}#", "{Raw}³") 
 return
 ;
-Capslock & 4::
+Capslock & VK34:: ; Capslock + 4
 
 Symbols("{Raw}$", "{Raw}€") 
 return
 ;
-Capslock & 5::
+Capslock & VK35:: ; Capslock + 5
 
 SendInput, {Raw}‰
 return
 ;
-Capslock & 6::
+Capslock & VK36:: ; Capslock + 6
 
 SendInput, {Raw}^
 return
 ;
-Capslock & 7::
+Capslock & VK37:: ; Capslock + 7
 
 SendInput, {Raw}&
 return
 ;
-Capslock & 8::
+Capslock & VK38:: ; Capslock + 8
 
 Symbols("{Raw}·", "{Raw}×")
 return
 ;
-Capslock & 9::
+Capslock & VK39:: ; Capslock + 9
 
 SendInput, {Raw}«
 return
 ;
-Capslock & 0::
+Capslock & VK30:: ; Capslock + 0
 
 SendInput, {Raw}»
 return
@@ -80,22 +80,22 @@ Symbols("{Raw}–", "{Raw}—")
 return
 ;
 ;
-Capslock & [::
+Capslock & VKDB:: ; Capslock + [
 
 SendInput, [
 return
 ;
-Capslock & ]::
+Capslock & VKDD:: ; Capslock + ]
 
 SendInput, ]
 return
 ;
-Capslock & n::
+Capslock & VK4E:: ; Capslock + n
 
 SendInput, {Raw}{
 return
 ;
-Capslock & m::
+Capslock & VK4D:: ; Capslock + m
 
 SendInput, {Raw}}
 return
@@ -110,12 +110,12 @@ Capslock & Space::
 SendInput, {Click}
 return
 ;
-Capslock & vkBC::
+Capslock & vkBC:: ; Capslock + ,
 
 Symbols("{Raw}<", "{Raw}≤") 
 return
 ;
-Capslock & vkBE::
+Capslock & vkBE:: ; Capslcok + .
 
 Symbols("{Raw}>", "{Raw}≥") 
 return

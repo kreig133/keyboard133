@@ -3,6 +3,7 @@
 	GetKeyState, shiftKeyState, Shift
 	GetKeyState, controlKeyState, Control
 	GetKeyState, altKeyState, Alt
+	GetKeyState, winKeyState, LWin
 
 	if shiftKeyState = D 
 	{ 
@@ -27,6 +28,17 @@
 	}
 	else if altKeyState = D
 		Send, !%MainKey%
+	else if winKeyState = D
+	{
+		if MainKey = {Del}
+		{
+			Send, #{Right}
+		}
+		else
+		{
+			Send, #%MainKey%
+		}
+	}
 	else
 		Send, %MainKey%
 	return
