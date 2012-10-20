@@ -120,7 +120,11 @@ Capslock & vkBE:: ; Capslcok + .
 Symbols("{Raw}>", "{Raw}≥") 
 return
 ;
+Capslock & vk5A:: ; Capslock + z
 
+SendImput, Ѣ
+return
+;
 :?:->::→
 ;
 :?:<-::←
