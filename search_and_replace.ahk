@@ -14,7 +14,7 @@ Gui +AlwaysOnTop
 
 Return
 
-Capslock & f::
+Capslock & vk46:: ; Capslock + F
 	oldClipboard := Clipboard
 
 	Send, ^{vk43}
@@ -62,7 +62,7 @@ F3:: ; Search ahead
 	;TODO
 	Return
 
-!p::  ; Replace Current Selection
+!vk50::  ; Alt + p —  Replace Current Selection
 	Gui, Submit, NoHide ;
 
 	if( ! Edit_TextIsSelected(hEdit) )
@@ -79,7 +79,7 @@ F3:: ; Search ahead
 	}
 	Return
 
-!a::  ; Replace All
+!vk41::  ; Alt+A — Replace All
 	Gui, Submit, NoHide  ;
 	Pattern := UpdatePattern()
 	NewText := UpdateStrings( RegExReplace(TextInEditor, Pattern, ReplaceBy) ) ;
