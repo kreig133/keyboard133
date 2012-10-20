@@ -9,7 +9,7 @@
 }
 
 
-Capslock & SC029:: ; Capslock + `
+Capslock & vkC0:: ; Capslock + `
 
 Symbols("{Raw}~", "{Raw}``")
 return
@@ -122,7 +122,7 @@ return
 ;
 Capslock & vk5A:: ; Capslock + z
 
-SendImput, Ѣ
+SendInput, Ѣ
 return
 ;
 :?:->::→
