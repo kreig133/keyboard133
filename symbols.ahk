@@ -122,7 +122,7 @@ return
 ;
 Capslock & vk5A:: ; Capslock + z
 
-SendInput, Ѣ
+Symbols("Ѣ", "ѣ")
 return
 ;
 :?:->::→
