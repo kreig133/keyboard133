@@ -45,35 +45,35 @@ WikiConfHotKey(FirstWikiTag, SecondWikiTag = "")
 	return 
 }
 
-#!q up::
+#!vk51 up:: ; Q
 WikiConfHotKey("{Raw}{quote}")
 return 
 
-#!e up::
+#!vk45 up:: ; E
 WikiConfHotKey("{Raw}{expand}")
 return 
 
-#!n up::
+#!vk4E up:: ; N
 WikiConfHotKey("{Raw}{note}")
 return 
 
-#!i up::
+#!vk49 up:: ; I
 WikiConfHotKey("{Raw}{info}")
 return 
 
-#!t up::
+#!vk54 up:: ; T
 WikiConfHotKey("{Raw}{tip}")
 return 
 
-#!w up::
+#!vk57 up:: ; W
 WikiConfHotKey("{Raw}{warning}")
 return 
 
-#!p up::
+#!vk50 up:: ; P
 WikiConfHotKey("{Raw}{panel}")
 return 
 
-#!m up::
+#!vk4D up:: ; M
 	SaveSelectedText()
 	SendInput, {Raw}{{%Clipboard%
 	Sleep, 50
@@ -81,7 +81,7 @@ return
 	Clipboard := tCl
 return
 
-#!a up::
+#!vk41 up:: ; A
 	SaveSelectedText()
 	OpenWikiDialog()
 	SendInput, {Raw}{anchor:%Clipboard%}
@@ -90,7 +90,7 @@ return
 return 
 
 
-#!r up::
+#!vk52 up:: ; R
 	SaveSelectedText()
 	OpenWikiDialog()
 	SendInput {Raw}{expand:Код PB}
@@ -107,14 +107,14 @@ return
 	CloseWikiDialogAndRestoreClipboard()
 return
 
-#!l up::
+#!vk4C up:: ; L
 	SaveSelectedText()
 	OpenWikiDialog()
 	SendInput, {Raw}[%Clipboard%|%tCl%#%Clipboard%]
 	CloseWikiDialogAndRestoreClipboard()
 return 
 
-#!v up::
+#!vk56 up:: ; V
 	SaveSelectedText()
 	OpenWikiDialog()
 	SendInput {Raw}{expand:Показать список исходящих ссылок}
@@ -126,7 +126,7 @@ return
 	CloseWikiDialogAndRestoreClipboard()
 return
 	
-#!c up::
+#!vk43 up:: ; C
 	SaveSelectedText()
 	OpenWikiDialog()
 	SendInput {Raw}{code:lang=javascript}
