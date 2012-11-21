@@ -8,6 +8,9 @@
 	return
 }
 
+Capslock & Tab::
+Send, {Space 4}
+return
 
 Capslock & vkC0:: ; Capslock + `
 

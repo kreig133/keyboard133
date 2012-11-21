@@ -2,7 +2,7 @@
 
 Capslock & Insert:: 
 
-Send, Capslock
+Send, {Capslock}
 return
 ;
 Capslock & VK0D:: ; Capslock + Enter
