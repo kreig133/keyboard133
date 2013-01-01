@@ -20,7 +20,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 SetCapsLockState AlwaysOff
 
+*Capslock:: ; sometimes "SetCapsLockState AlwaysOff" not work
+Return
 
+Capslock & E::
+SendInput, {Raw}%Clipboard%
+Return
 
 ;*F12::
 ;	MsgBox, % "LShift = " GetKeyState("LShift", "P") "`nLWin  = " GetKeyState("LWin", "P")  "`nLCtrl   = " GetKeyState("LCtrl", "P") "`nLAlt    = " GetKeyState("LAlt", "P")
